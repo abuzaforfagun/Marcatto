@@ -1,3 +1,4 @@
+import { LoginService } from './services/login.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MarcattoExpenceManager';
+  constructor(public loginService: LoginService) {
+  }
 }

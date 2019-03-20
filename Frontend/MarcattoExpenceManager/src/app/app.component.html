@@ -3,6 +3,6 @@
     <img src="../assets/logo.jpg" alt="Logo">
   </div>
 </div>
-<app-login></app-login>
+<app-login *ngIf="!loginService.isLoggedIn"></app-login>
 
 <router-outlet></router-outlet>
