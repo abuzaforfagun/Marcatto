@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginService.isLoggedIn = true;
+    this.loginService.loginUser();
     this.router.navigateByUrl('expense/add');
   }
 

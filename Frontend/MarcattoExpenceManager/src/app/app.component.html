@@ -5,4 +5,4 @@
 </div>
 <app-login *ngIf="!loginService.isLoggedIn"></app-login>
 
-<router-outlet></router-outlet>
+<router-outlet *ngIf="loginService.isLoggedIn"></router-outlet>
