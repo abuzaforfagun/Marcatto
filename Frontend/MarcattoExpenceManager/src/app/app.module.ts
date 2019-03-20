@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgModule } from '@angular/core';
+import { MatFormFieldModule, MatInputModule, MatNativeDateModule, MatIconModule, MatSelectModule, MatOptionModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +23,13 @@ import { LoginService } from './services/login.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    MatDatepickerModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [
     LoginService

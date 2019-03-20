@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddExpenseComponent implements OnInit {
 
+  paymentOptions = [];
   constructor() { }
 
   ngOnInit() {
+    this.paymentOptions.push({ id: 1, name: 'Efectivo' });
+    this.paymentOptions.push({ id: 2, name: 'Tarjeta' });
+    this.paymentOptions.push({ id: 3, name: 'Deposito' });
+    this.paymentOptions.push({ id: 4, name: 'Transferencia' });
   }
 
 }
