@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="row">
+    <div class="date-time-container">
+      <div class="col-md-12">
+        <div class="datetime-holder">
+          <span>Marzo 15, 2019 12:33 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="actions">
+      <div class="col-md-6">
+        <table class="actions">
+          <tr>
+            <td></td>
+            <td>EFEVO</td>
+            <td>BANCO</td>
+          </tr>
+          <tr>
+            <td>Saldo actual</td>
+            <td>$45</td>
+            <td>$120</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-6 buttons">
+        <button><img src="../../assets/income.png"></button>
+        <button><img src="../../assets/expense.png"></button>
+      </div>
+    </div>
+  </div>
+  <div class="row month_specification">
+    <div class="col-md-12"><span>Marzo 2019</span></div>
+  </div>
+  <div class="row data_container income-data">
+    <div class="col-md-12">
+      <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+        <!-- Item Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.date}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+
+        </ng-container>
+
+        <!-- Cost Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.description}} </td>
+          <td mat-footer-cell *matFooterCellDef> Total </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="efevo">
+          <th mat-header-cell *matHeaderCellDef> EFEVO </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.efevo}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="banco">
+          <th mat-header-cell *matHeaderCellDef> BANCO </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.banco}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6 income">
+        <table class="total_chart">
+          <tr>
+            <th class="header_th" colspan="4">Income</th>
+          </tr>
+          <tr>
+            <th class="header">EFEVO</th>
+            <th class="amount"><span>$80</span></th>
+            <th class="header">BANCO</th>
+            <th class="amount"><span>$120</span></th>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-6 expense">
+        <table class="total_chart">
+          <tr>
+            <th class="header_th" colspan="4">Expense</th>
+          </tr>
+          <tr>
+            <th class="header">EFEVO</th>
+            <th class="amount"><span>$80</span></th>
+            <th class="header">BANCO</th>
+            <th class="amount"><span>$120</span></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+  </div>
+
+  <div class="row data_container expense-data">
+    <div class="col-md-12">
+      <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+        <!-- Item Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.date}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+
+        </ng-container>
+
+        <!-- Cost Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.description}} </td>
+          <td mat-footer-cell *matFooterCellDef> Total </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="efevo">
+          <th mat-header-cell *matHeaderCellDef> EFEVO </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.efevo}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="banco">
+          <th mat-header-cell *matHeaderCellDef> BANCO </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.banco}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+
+
+
+</div>

@@ -1,0 +1,118 @@
+.month_specification {
+    font-size: 30px;
+    text-align: center;
+    color: gray;
+    margin-top: 20px;
+}
+.datetime-holder {
+    text-align: right;
+    font-size: 15px;
+    font-weight: bold;
+    color: gray;
+}
+
+.actions {
+    table {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        background: #8064a17a;
+        border: 1px solid;
+    }
+
+    td, th, tr {
+        padding: 10px;
+        color: white;
+    }
+    .buttons {
+        text-align: right;
+    }
+    button {
+        background: transparent;
+        border: 0;
+        img {
+            max-width: 80px;
+        }
+    }
+}
+
+.data_container {
+    table {
+        width: 100%;
+    }
+    margin-top: 30px;   
+    margin-bottom: 20px;
+}
+
+.total_chart {
+    width: 100%;
+    background: #ece7e7;
+    .header_th {
+        text-align: center;
+        font-size: 25px;
+        color: white;
+    }
+    th {
+        padding: 5px;
+        font-size: 20px;
+    }
+    th.header {
+        text-align: right;
+    }
+    th.amount {
+        min-width: 120px;
+    }
+    .amount span {
+        background: white;
+        padding: 5px;
+    }
+}
+
+.income {
+    padding-left: 0!important;
+    .header_th {
+        background: green;
+    }
+}
+
+.expense {
+    padding-right: 0!important;
+    .header_th {
+        background: red;
+    }
+}
+
+.data_source tr:first {
+    background: #8064a17a;
+    th {
+        font-weight: bold;
+    }
+}
+
+.mat-footer-row {
+    background: #8064a17a;
+    td {
+        font-weight: bold;
+        color: black!important;
+    }
+}
+
+.mat-header-row {
+    background: #80808087;
+    th {
+        color: black!important;
+        font-weight: bold;
+    }
+}
+
+.income-data {
+    td {
+        color: green;
+    }
+}
+
+.expense-data {
+    td {
+        color: red;
+    }
+}

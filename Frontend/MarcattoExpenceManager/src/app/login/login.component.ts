@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginService.loginUser();
-    this.router.navigateByUrl('expense/add');
+    this.router.navigateByUrl('dashbaord');
   }
 
 }
