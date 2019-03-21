@@ -1,4 +1,6 @@
+import { ActionsControlService } from './../services/actions-control.service';
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 
 
@@ -22,7 +24,9 @@ export interface Transaction {
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  hideShowAnimator: boolean = true;
 
+  constructor(public actionControlService: ActionsControlService) { }
   displayedColumns: string[] = ['date', 'description', 'efevo', 'banco'];
   transactions: Transaction[] = [
     { date: 'Jueves, 14 marzo 2019', description: 'Corte marcato', efevo: 80, banco: 0 },
@@ -36,13 +40,11 @@ export class DashboardComponent implements OnInit {
     return this.transactions.map(t => t.efevo).reduce((acc, value) => acc + value, 0);
   }
 
-  constructor() { }
-
   ngOnInit() {
   }
 
   openAddform() {
-    this.isAddOpen = true;
+    this.actionControlService.isAddFormOpen = true;
   }
 
 }

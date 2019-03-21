@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ActionsControlService } from './../services/actions-control.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-add-expense',
@@ -8,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class AddExpenseComponent implements OnInit {
 
   paymentOptions = [];
-  constructor() { }
+  hideShowAnimator: boolean = true;
+  constructor(private actionControlService: ActionsControlService) { }
 
   ngOnInit() {
     this.paymentOptions.push({ id: 1, name: 'Efectivo' });
@@ -17,4 +20,7 @@ export class AddExpenseComponent implements OnInit {
     this.paymentOptions.push({ id: 4, name: 'Transferencia' });
   }
 
+  addExpense() {
+    this.actionControlService.isAddFormOpen = false;
+  }
 }
