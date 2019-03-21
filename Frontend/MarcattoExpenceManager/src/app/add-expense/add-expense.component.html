@@ -1,39 +1,44 @@
-<div class="container">
-  <div class="col-md-8">
-    <div class="form-group">
-      <label for="date">Fecha</label><br />
-      <mat-form-field class="example-full-width">
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker">
-          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+<div class="row container-add-expense">
+  <div class="col-md-12">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="date">Fecha</label><br />
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea name="textarea" class="form-control"></textarea>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="textarea" class="form-control"></textarea>
+      </div>
     </div>
-    <div class="form-group">
-      <div class="col-md-3">
+    <div class="col-md-2">
+      <div class="form-group">
         <label for="amount">Amount</label>
         <input name="amount" type="number" class="form-control">
       </div>
-      <div class="clearfix"></div>
     </div>
-
-    <div class="form-group">
-      <label>Forma de pago</label><br />
-      <mat-form-field>
-        <mat-label>Forma de pago</mat-label>
-        <mat-select disableOptionCentering>
-          <mat-option *ngFor="let paymentOpt of paymentOptions" [value]="paymentOpt.id">
-            {{paymentOpt.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Forma de pago</label><br />
+        <mat-form-field>
+          <mat-label>Forma de pago</mat-label>
+          <mat-select disableOptionCentering>
+            <mat-option *ngFor="let paymentOpt of paymentOptions" [value]="paymentOpt.id">
+              {{paymentOpt.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-    <button class="btn btn-primary btn-lg">Add</button>
+    <div class="col-md-1">
+      <button class="btn btn-primary btn-lg">Add</button>
+    </div>
   </div>
 </div>

@@ -25,11 +25,12 @@
         </table>
       </div>
       <div class="col-md-6 buttons">
-        <button><img src="../../assets/income.png"></button>
-        <button><img src="../../assets/expense.png"></button>
+        <button (click)="openAddform()"><img src="../../assets/income.png"></button>
+        <button (click)="openAddform()"><img src="../../assets/expense.png"></button>
       </div>
     </div>
   </div>
+  <app-add-expense *ngIf="isAddOpen" class=""></app-add-expense>
   <div class="row month_specification">
     <div class="col-md-12"><span>Marzo 2019</span></div>
   </div>

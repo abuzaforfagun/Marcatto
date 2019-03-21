@@ -29,6 +29,8 @@ export class DashboardComponent implements OnInit {
     { date: 'Jueves, 15 marzo 2019', description: 'Corte marcato', efevo: 0, banco: 120 }
   ];
 
+  isAddOpen = false;
+
   /** Gets the total cost of all transactions. */
   getTotalCost() {
     return this.transactions.map(t => t.efevo).reduce((acc, value) => acc + value, 0);
@@ -39,5 +41,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  openAddform() {
+    this.isAddOpen = true;
+  }
 
 }

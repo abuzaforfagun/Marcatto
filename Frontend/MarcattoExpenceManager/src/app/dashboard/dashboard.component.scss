@@ -10,8 +10,14 @@
     font-weight: bold;
     color: gray;
 }
-
+.add-expense-form {
+    
+}
 .actions {
+    .col-md-6 {
+        padding-right: 0;
+        padding-left: 0;
+    }
     table {
         width: 100%;
         text-align: center;
