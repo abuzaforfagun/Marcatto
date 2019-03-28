@@ -22,13 +22,18 @@
         width: 100%;
         text-align: center;
         font-weight: bold;
-        background: #8064a17a;
         border: 1px solid;
     }
-
+    .action_header{
+        background: #8080807a;
+        border-radius: 20px;
+        padding: 5px 10px;
+    }
     td, th, tr {
         padding: 10px;
-        color: white;
+        color: black;
+        font-size: 33px;
+        font-family: Avinar;
     }
     .buttons {
         text-align: right;
