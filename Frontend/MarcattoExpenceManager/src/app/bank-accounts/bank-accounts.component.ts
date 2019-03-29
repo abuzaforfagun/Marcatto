@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bank-accounts',
@@ -9,9 +10,12 @@ export class BankAccountsComponent implements OnInit {
 
   bankName: string;
   accountNumber: string;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  btnBackClick() {
+    this.router.navigateByUrl("dashbaord");
+  }
 }
