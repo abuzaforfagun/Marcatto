@@ -1,0 +1,45 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Bank Name</label>
+          <input type="text" placeholder="Bank Name" name="txtBankName" [(ngModel)]="bankName" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Account Number</label>
+          <input type="text" placeholder="Account Number" name="txtAccountNumber" [(ngModel)]="accountNumber"
+            class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <br />
+        <button class="btn btn-primary">Add Bank</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tr>
+          <th>Bank Name</th>
+          <th>Account Number</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>Bank 1</td>
+          <td>1234</td>
+          <td><button class="btn btn-danger">Delete</button></td>
+        </tr>
+        <tr>
+          <td>Bank 2</td>
+          <td>1234</td>
+          <td><button class="btn btn-danger">Delete</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

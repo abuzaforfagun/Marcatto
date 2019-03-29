@@ -12,6 +12,7 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppComponent,
     LoginComponent,
     AddExpenseComponent,
-    DashboardComponent
+    DashboardComponent,
+    BankAccountsComponent
   ],
   imports: [
     BrowserModule,

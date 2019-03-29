@@ -1,10 +1,10 @@
 <div class="row container-add-expense">
   <div class="col-md-12">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="form-group">
         <label for="date">Fecha</label><br />
-        <mat-form-field class="example-full-width">
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="picker" [value]="date.value" placeholder="Choose a date">
           <mat-datepicker-toggle matSuffix [for]="picker">
             <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
           </mat-datepicker-toggle>
@@ -24,14 +24,27 @@
         <input name="amount" type="number" class="form-control">
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="form-group">
         <label>Forma de pago</label><br />
-        <mat-form-field>
+        <mat-form-field class="full-width">
           <mat-label>Forma de pago</mat-label>
-          <mat-select disableOptionCentering>
+          <mat-select disableOptionCentering (selectionChange)="changePaymentOptions($event.value)">
             <mat-option *ngFor="let paymentOpt of paymentOptions" [value]="paymentOpt.id">
               {{paymentOpt.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div *ngIf="isBankAccountSelected" class="form-group">
+        <label>Bank Account</label><br />
+        <mat-form-field class="full-width">
+          <mat-label>Select Bank Account</mat-label>
+          <mat-select disableOptionCentering>
+            <mat-option *ngFor="let bank of bankAccounts" [value]="bank.id">
+              {{bank.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
