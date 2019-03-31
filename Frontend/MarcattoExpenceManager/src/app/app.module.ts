@@ -3,7 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatNativeDateModule, MatIconModule, MatSelectModule, MatOptionModule, MatTableModule } from '@angular/material';
+import {
+  MatFormFieldModule, MatInputModule, MatNativeDateModule, MatIconModule, MatSelectModule,
+  MatOptionModule, MatTableModule, MatDialogModule
+} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -21,13 +26,15 @@ import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
     LoginComponent,
     AddExpenseComponent,
     DashboardComponent,
-    BankAccountsComponent
+    BankAccountsComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
@@ -35,12 +42,16 @@ import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
     MatIconModule,
     MatSelectModule,
     MatOptionModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [
     LoginService,
     ActionsControlService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DeleteDialogComponent
+  ]
 })
 export class AppModule { }

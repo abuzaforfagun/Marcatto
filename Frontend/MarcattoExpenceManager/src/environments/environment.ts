@@ -5,6 +5,15 @@
 export const environment = {
   production: false
 };
+const rootAPI = 'https://localhost:44356/api';
+export const API = {
+  bank: {
+    getAll: `${rootAPI}/bank/`,
+    add: `${rootAPI}/bank`,
+    terminate: `${rootAPI}/bank`,
+  }
+};
+
 
 /*
  * For easier debugging in development mode, you can import the following file

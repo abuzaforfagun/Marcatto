@@ -5,19 +5,19 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="">Bank Name</label>
-          <input type="text" placeholder="Bank Name" name="txtBankName" [(ngModel)]="bankName" class="form-control" />
+          <input type="text" placeholder="Bank Name" name="txtBankName" [(ngModel)]="bank.name" class="form-control" />
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
           <label for="">Account Number</label>
-          <input type="text" placeholder="Account Number" name="txtAccountNumber" [(ngModel)]="accountNumber"
+          <input type="text" placeholder="Account Number" name="txtAccountNumber" [(ngModel)]="bank.accountNumber"
             class="form-control" />
         </div>
       </div>
       <div class="col-md-6">
         <br />
-        <button class="btn btn-primary">Add Bank</button>
+        <button (click)="addBank()" class="btn btn-primary">Add Bank</button>
         <button (click)="btnBackClick()" class="btn btn-primary">Back</button>
       </div>
     </div>
@@ -30,15 +30,20 @@
           <th>Account Number</th>
           <th>Actions</th>
         </tr>
-        <tr>
-          <td>Bank 1</td>
-          <td>1234</td>
-          <td><button class="btn btn-danger">Delete</button></td>
+        <tr *ngFor="let bank of bankService.banks">
+          <td>{{bank.name}}</td>
+          <td>{{bank.accountNumber}}</td>
+          <td><button (click)="terminateBank(bank)" class="btn btn-danger">Delete</button></td>
         </tr>
-        <tr>
-          <td>Bank 2</td>
-          <td>1234</td>
-          <td><button class="btn btn-danger">Delete</button></td>
+        <tr *ngIf="!bankService.isDataLoaded">
+          <td colspan="3">
+            Loading bank accounts...
+          </td>
+        </tr>
+        <tr *ngIf="bankService.isDataLoaded && (!bankService.banks || bankService.banks.length == 0)">
+          <td colspan="3">
+            No bank account available!
+          </td>
         </tr>
       </table>
     </div>
