@@ -1,0 +1,1 @@
+export const CASH_PAYMENT_ID = 1;

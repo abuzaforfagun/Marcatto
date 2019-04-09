@@ -11,6 +11,9 @@ export const API = {
     getAll: `${rootAPI}/bank/`,
     add: `${rootAPI}/bank`,
     terminate: `${rootAPI}/bank`,
+  },
+  paymentOpiton: {
+    getAll: `${rootAPI}/paymentoptions`
   }
 };
 

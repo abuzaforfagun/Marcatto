@@ -9,6 +9,7 @@ namespace Marcatto.Preseistance
     public class MarcattoDbContext : DbContext
     {
         public DbSet<BankAccount> BankAccounts { get; set; }
+        public DbSet<PaymentOption> PaymentOptions { get; set; }
         public MarcattoDbContext(DbContextOptions<MarcattoDbContext> options)
             : base(options)
         {

@@ -8,6 +8,7 @@ namespace Marcatto.Repository
     public interface IUnitOfWork
     {
         IBankRepository BankRepository { get; set; }
+        IPaymentOptionsRepository PaymentOptionsRepository { get; set; }
 
         Task DoneAsync();
     }

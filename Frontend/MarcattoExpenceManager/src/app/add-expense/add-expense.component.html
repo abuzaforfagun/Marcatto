@@ -30,10 +30,11 @@
         <mat-form-field class="full-width">
           <mat-label>Forma de pago</mat-label>
           <mat-select disableOptionCentering (selectionChange)="changePaymentOptions($event.value)">
-            <mat-option *ngFor="let paymentOpt of paymentOptions" [value]="paymentOpt.id">
+            <mat-option *ngFor="let paymentOpt of paymentOptionService.paymentOptions" [value]="paymentOpt.id">
               {{paymentOpt.name}}
             </mat-option>
           </mat-select>
+          <label *ngIf="!paymentOptionService.paymentOptions">Loading...</label>
         </mat-form-field>
       </div>
     </div>

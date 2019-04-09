@@ -1,3 +1,4 @@
+import { PaymentOptionsService } from './services/payment-options.service';
 import { ActionsControlService } from './services/actions-control.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,7 +48,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
   ],
   providers: [
     LoginService,
-    ActionsControlService
+    ActionsControlService,
+    PaymentOptionsService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
