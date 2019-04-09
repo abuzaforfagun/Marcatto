@@ -24,7 +24,7 @@ namespace MarcattoAPI.Controllers
         {
             this.unitOfWork.BankRepository.Add(bankAccount);
             await this.unitOfWork.DoneAsync();
-            return this.unitOfWork.BankRepository.LastAddedAccount;
+            return this.unitOfWork.BankRepository.LastAddedObject;
         }
 
         [HttpGet]

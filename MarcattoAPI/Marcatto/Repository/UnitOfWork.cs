@@ -11,12 +11,14 @@ namespace Marcatto.Repository
         private readonly MarcattoDbContext context;
         public IBankRepository BankRepository { get; set; }
         public IPaymentOptionsRepository PaymentOptionsRepository { get; set; }
+        public IIncomeRepository IncomeRepository { get; set; }
 
         public UnitOfWork(MarcattoDbContext context)
         {
             this.context = context;
             BankRepository = new BankRepository(context);
             PaymentOptionsRepository = new PaymentOptionsRepository(context);
+            IncomeRepository = new IncomeRepository(context);
         }
 
         public async Task DoneAsync()

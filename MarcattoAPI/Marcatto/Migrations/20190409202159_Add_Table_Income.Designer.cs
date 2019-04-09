@@ -4,14 +4,16 @@ using Marcatto.Preseistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Marcatto.Migrations
 {
     [DbContext(typeof(MarcattoDbContext))]
-    partial class MarcattoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190409202159_Add_Table_Income")]
+    partial class Add_Table_Income
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,8 +47,6 @@ namespace Marcatto.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("AddedDateTime");
 
                     b.Property<double>("Amount");
 

@@ -12,7 +12,7 @@ namespace Marcatto.Repository
     public class BankRepository : IBankRepository
     {
         private readonly MarcattoDbContext context;
-        public BankAccount LastAddedAccount { get; set; }
+        public BankAccount LastAddedObject { get; set; }
 
         public BankRepository(MarcattoDbContext context)
         {
@@ -22,7 +22,7 @@ namespace Marcatto.Repository
         {
             account.AddedDate = DateTime.Now;
             this.context.BankAccounts.Add(account);
-            this.LastAddedAccount = account;
+            this.LastAddedObject = account;
         }
 
         public async Task<BankAccount> GetAsync(int id)

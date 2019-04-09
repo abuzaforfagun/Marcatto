@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Marcatto.Preseistance;
 using Marcatto.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,8 @@ namespace MarcattoAPI
             services.AddCors();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddAutoMapper();
 
             services.AddDbContext<MarcattoDbContext>(
                 options => options

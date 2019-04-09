@@ -2,19 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Marcatto.Model
+namespace Marcatto.Resources
 {
-    public class Income
+    public class IncomeResource
     {
-        public int Id { get; set; }
         public string Date { get; set; }
         public double Amount { get; set; }
-        public PaymentOption PaymentOption { get; set; }
         public int PaymentOptionId { get; set; }
-        public BankAccount BankAccount { get; set; }
         public int BankAccountId { get; set; }
-        public DateTime AddedDateTime { get; set; }
-
-
     }
 }

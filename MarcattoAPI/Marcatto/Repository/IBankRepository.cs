@@ -9,7 +9,7 @@ namespace Marcatto.Repository
 {
     public interface IBankRepository
     {
-        BankAccount LastAddedAccount { get; set; }
+        BankAccount LastAddedObject { get; set; }
         void Add(BankAccount account);
         Task<BankAccount> GetAsync(int id);
         Task<IList<BankAccount>> GetAllAsync();

@@ -10,6 +10,8 @@ namespace Marcatto.Repository
         IBankRepository BankRepository { get; set; }
         IPaymentOptionsRepository PaymentOptionsRepository { get; set; }
 
+        IIncomeRepository IncomeRepository { get; set; }
+
         Task DoneAsync();
     }
 }
