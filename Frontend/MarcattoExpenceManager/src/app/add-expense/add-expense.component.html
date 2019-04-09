@@ -43,11 +43,12 @@
         <mat-form-field class="full-width">
           <mat-label>Select Bank Account</mat-label>
           <mat-select disableOptionCentering>
-            <mat-option *ngFor="let bank of bankAccounts" [value]="bank.id">
+            <mat-option *ngFor="let bank of bankService.banks" [value]="bank.id">
               {{bank.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <label *ngIf="!bankService.banks">Loading...</label>
       </div>
     </div>
     <div class="col-md-1">

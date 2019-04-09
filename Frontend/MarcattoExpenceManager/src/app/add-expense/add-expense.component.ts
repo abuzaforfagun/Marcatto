@@ -1,3 +1,4 @@
+import { BankService } from './../services/bank.service';
 import { ActionsControlService } from './../services/actions-control.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -12,18 +13,18 @@ export class AddExpenseComponent implements OnInit {
 
   paymentOptions = [];
   bankAccounts = [];
-  hideShowAnimator: boolean = true;
+  hideShowAnimator = true;
   date = new FormControl(new Date());
   isBankAccountSelected = false;
-  constructor(private actionControlService: ActionsControlService) { }
+  constructor(private actionControlService: ActionsControlService,
+    public bankService: BankService) { }
 
   ngOnInit() {
     this.paymentOptions.push({ id: 1, name: 'Efectivo' });
     this.paymentOptions.push({ id: 2, name: 'Tarjeta' });
     this.paymentOptions.push({ id: 3, name: 'Deposito' });
     this.paymentOptions.push({ id: 4, name: 'Transferencia' });
-    this.bankAccounts.push({ id: 1, name: 'Bank 1' });
-    this.bankAccounts.push({ id: 2, name: 'Bank 2' });
+    this.bankService.getAll();
   }
 
   addExpense() {

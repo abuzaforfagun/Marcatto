@@ -2,7 +2,6 @@ import { Bank } from './../models/bank';
 import { HttpService } from './http.service';
 import { Injectable } from '@angular/core';
 import { API } from 'src/environments/environment';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
