@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -22,6 +24,11 @@ namespace Marcatto.Repository
         {
             context.Income.Add(income);
             this.LastAddedObject = income;
+        }
+
+        public async Task<IEnumerable<Income>> GetAsync()
+        {
+            return await context.Income.ToListAsync();
         }
     }
 }

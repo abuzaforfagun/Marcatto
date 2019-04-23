@@ -33,5 +33,12 @@ namespace MarcattoAPI.Controllers
             await unitOfWork.DoneAsync();
             return Ok(unitOfWork.IncomeRepository.LastAddedObject);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var result = await unitOfWork.IncomeRepository.GetAsync();
+            return Ok(result);
+        }
     }
 }
