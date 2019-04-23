@@ -127,3 +127,16 @@
         color:#f46262;
     }
 }
+@media only screen and (max-width: 600px) {
+    td, th, tr {
+        font-size: 20px!important;
+    }
+    .actions {
+        .buttons {
+            text-align: center!important;
+        }
+        button img{
+            max-width: 60px!important;
+        }
+    }
+  }
