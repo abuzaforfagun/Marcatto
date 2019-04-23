@@ -47,13 +47,6 @@
     }
 }
 
-.data_container {
-    table {
-        width: 100%;
-    }
-    margin-top: 30px;   
-    margin-bottom: 20px;
-}
 
 .total_chart {
     width: 100%;
@@ -93,40 +86,6 @@
     }
 }
 
-.data_source tr:first {
-    background: #8064a17a;
-    th {
-        font-weight: bold;
-    }
-}
-
-.mat-footer-row {
-    background: #8064a17a;
-    td {
-        font-weight: bold;
-        color: black!important;
-    }
-}
-
-.mat-header-row {
-    background: #80808087;
-    th {
-        color: black!important;
-        font-weight: bold;
-    }
-}
-
-.income-data {
-    td {
-        color: #45d195;
-    }
-}
-
-.expense-data {
-    td {
-        color:#f46262;
-    }
-}
 @media only screen and (max-width: 600px) {
     td, th, tr {
         font-size: 20px!important;

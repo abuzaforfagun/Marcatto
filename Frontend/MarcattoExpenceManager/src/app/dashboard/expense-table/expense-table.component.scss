@@ -1,0 +1,51 @@
+
+.data_container {
+    table {
+        width: 100%;
+    }
+    margin-top: 30px;   
+    margin-bottom: 20px;
+}
+
+
+.data_source tr:first {
+    background: #8064a17a;
+    th {
+        font-weight: bold;
+    }
+}
+
+.mat-footer-row {
+    background: #8064a17a;
+    td {
+        font-weight: bold;
+        color: black!important;
+    }
+}
+
+.mat-header-row {
+    background: #80808087;
+    th {
+        color: black!important;
+        font-weight: bold;
+    }
+}
+
+td.min {
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 20px;
+}
+
+
+.income {
+    td {
+        color: #45d195;
+    }
+}
+
+.expense {
+    td {
+        color:#f46262;
+    }
+}
