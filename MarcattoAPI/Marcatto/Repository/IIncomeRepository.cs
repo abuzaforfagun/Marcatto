@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Marcatto.Model;
@@ -11,7 +12,7 @@ namespace Marcatto.Repository
         Income LastAddedObject { get; set; }
         Task AddAsync(Income income);
         Task<IEnumerable<Income>> GetAsync();
-
+        Task<IEnumerable<Income>> GetAsync(DateTime date);
 
     }
 }

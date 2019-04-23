@@ -40,5 +40,13 @@ namespace MarcattoAPI.Controllers
             var result = await unitOfWork.IncomeRepository.GetAsync();
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("date/{date}")]
+        public async Task<IActionResult> GetByDate(DateTime date)
+        {
+            var result = await unitOfWork.IncomeRepository.GetAsync(date);
+            return Ok(result);
+        }
     }
 }

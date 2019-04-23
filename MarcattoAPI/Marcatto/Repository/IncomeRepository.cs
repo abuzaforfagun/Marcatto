@@ -30,5 +30,11 @@ namespace Marcatto.Repository
         {
             return await context.Income.ToListAsync();
         }
+
+        public async Task<IEnumerable<Income>> GetAsync(DateTime date)
+        {
+            return await context.Income
+                .Where(i => i.AddedDateTime.Year == date.Year && i.AddedDateTime.Month == date.Month).ToListAsync();
+        }   
     }
 }
