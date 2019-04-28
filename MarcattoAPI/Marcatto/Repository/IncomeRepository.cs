@@ -28,7 +28,7 @@ namespace Marcatto.Repository
 
         public async Task<IEnumerable<Income>> GetAsync()
         {
-            return await context.Income.ToListAsync();
+            return await context.Income.Include(i=>i.BankAccount).ToListAsync();
         }
 
         public async Task<IEnumerable<Income>> GetAsync(DateTime date)

@@ -20,6 +20,7 @@ import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { ExpenseTableComponent } from './dashboard/expense-table/expense-table.component';
+import { IncomeTableComponent } from './dashboard/income-table/income-table.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ExpenseTableComponent } from './dashboard/expense-table/expense-table.c
     DashboardComponent,
     BankAccountsComponent,
     DeleteDialogComponent,
-    ExpenseTableComponent
+    ExpenseTableComponent,
+    IncomeTableComponent
   ],
   imports: [
     BrowserModule,

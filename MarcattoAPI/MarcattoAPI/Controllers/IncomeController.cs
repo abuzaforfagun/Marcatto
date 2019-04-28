@@ -37,16 +37,22 @@ namespace MarcattoAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await unitOfWork.IncomeRepository.GetAsync();
-            return Ok(result);
+            var incomeList = await unitOfWork.IncomeRepository.GetAsync();
+            var transactions = mapper.Map<IEnumerable<Income>, List<Transaction>>(incomeList);
+            var transactionResource = new TransactionResource();
+            var banks = incomeList.Where(i=>i.BankAccount != null).Select(i=>i.BankAccount.Name).Distinct();
+            transactionResource.Transactions = transactions;
+            transactionResource.AvailableColumns.AddRange(banks);
+            return Ok(transactionResource);
         }
 
         [HttpGet]
         [Route("date/{date}")]
         public async Task<IActionResult> GetByDate(DateTime date)
         {
-            var result = await unitOfWork.IncomeRepository.GetAsync(date);
-            return Ok(result);
+            var incomeList = await unitOfWork.IncomeRepository.GetAsync(date);
+            var transactions = mapper.Map<IEnumerable<Income>, List<Transaction>>(incomeList);
+            return Ok(transactions);
         }
     }
 }
