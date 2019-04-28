@@ -4,14 +4,16 @@ using Marcatto.Preseistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Marcatto.Migrations
 {
     [DbContext(typeof(MarcattoDbContext))]
-    partial class MarcattoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190428114252_AlterTable_Income_AddColumn_Description")]
+    partial class AlterTable_Income_AddColumn_Description
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
