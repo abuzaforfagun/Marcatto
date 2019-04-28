@@ -14,6 +14,10 @@ export const API = {
   },
   paymentOpiton: {
     getAll: `${rootAPI}/paymentoptions`
+  },
+  income: {
+    getAll: `${rootAPI}/income/`,
+    getByDate: `${rootAPI}/income/date/`
   }
 };
 

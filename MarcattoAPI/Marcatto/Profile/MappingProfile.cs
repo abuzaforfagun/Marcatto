@@ -16,7 +16,7 @@ namespace Marcatto.Profile
                 .ForMember(t => t.BankId, opt => opt.MapFrom(i => i.BankAccountId))
                 .ForMember(t => t.Amount, opt => opt.MapFrom(i => i.Amount))
                 .ForMember(t => t.Description, opt => opt.MapFrom(i => i.Description))
-                .ForMember(t => t.Date, opt => opt.MapFrom(i => i.Date))
+                .ForMember(t => t.Date, opt => opt.MapFrom(i => i.Date.ToShortDateString()))
                 .ForMember(t => t.BankName, opt => opt.MapFrom(i => i.BankAccount.Name));
 
             //CreateMap<IEnumerable<Income>, List<Transaction>>();

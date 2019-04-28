@@ -10,6 +10,11 @@
     font-weight: bold;
     color: gray;
 }
+.data_container {
+    max-width: 100%;
+    overflow: scroll;
+}
+
 .add-expense-form {
     
 }
@@ -99,3 +104,5 @@
         }
     }
   }
+
+  

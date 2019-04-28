@@ -7,7 +7,7 @@ namespace Marcatto.Model
     public class Income
     {
         public int Id { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public double Amount { get; set; }
         public PaymentOption PaymentOption { get; set; }
         public int PaymentOptionId { get; set; }
