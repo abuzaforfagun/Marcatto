@@ -29,7 +29,7 @@ namespace MarcattoAPI.Controllers
         {
             var incomeEntity = mapper.Map<Income>(income);
             incomeEntity.AddedDateTime = DateTime.Now;
-            await unitOfWork.IncomeRepository.AddAsync(incomeEntity);
+            unitOfWork.IncomeRepository.Add(incomeEntity);
             await unitOfWork.DoneAsync();
             return Ok(unitOfWork.IncomeRepository.LastAddedObject);
         }

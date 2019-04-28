@@ -20,7 +20,7 @@ namespace Marcatto.Repository
             this.context = context;
         }
 
-        public async Task AddAsync(Income income)
+        public void Add(Income income)
         {
             context.Income.Add(income);
             this.LastAddedObject = income;
@@ -33,7 +33,7 @@ namespace Marcatto.Repository
 
         public async Task<IEnumerable<Income>> GetAsync(DateTime date)
         {
-            return await context.Income
+            return await context.Income.Include(i => i.BankAccount)
                 .Where(i => i.AddedDateTime.Year == date.Year && i.AddedDateTime.Month == date.Month).ToListAsync();
         }   
     }

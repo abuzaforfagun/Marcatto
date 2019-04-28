@@ -10,7 +10,7 @@ namespace Marcatto.Repository
     public interface IIncomeRepository
     {
         Income LastAddedObject { get; set; }
-        Task AddAsync(Income income);
+        void Add(Income income);
         Task<IEnumerable<Income>> GetAsync();
         Task<IEnumerable<Income>> GetAsync(DateTime date);
 
