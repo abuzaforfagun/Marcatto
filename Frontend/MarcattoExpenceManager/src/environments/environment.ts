@@ -18,6 +18,9 @@ export const API = {
   income: {
     getAll: `${rootAPI}/income/`,
     getByDate: `${rootAPI}/income/date/`
+  },
+  dashboard: {
+    summery: `${rootAPI}/dashboard/`
   }
 };
 

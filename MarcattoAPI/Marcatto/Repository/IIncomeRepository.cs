@@ -14,5 +14,6 @@ namespace Marcatto.Repository
         Task<IEnumerable<Income>> GetAsync();
         Task<IEnumerable<Income>> GetAsync(DateTime date);
 
+        Task<DashboardSummery> GetSummery();
     }
 }

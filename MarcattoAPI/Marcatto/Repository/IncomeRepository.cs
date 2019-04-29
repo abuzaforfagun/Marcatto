@@ -35,6 +35,41 @@ namespace Marcatto.Repository
         {
             return await context.Income.Include(i => i.BankAccount)
                 .Where(i => i.AddedDateTime.Year == date.Year && i.AddedDateTime.Month == date.Month).ToListAsync();
-        }   
+        }
+
+        public async Task<DashboardSummery> GetSummery()
+        {
+            var cash = await context.Income.Where(i => i.PaymentOptionId == 1).SumAsync(i => i.Amount);
+            var banks = await context.Income.Include(i => i.BankAccount).Where(i => i.BankAccountId != null)
+                .GroupBy(i => i.BankAccountId).Select(
+                    g => new BankSummery()
+                    {
+                        Name = g.First().BankAccount.Name,
+                        Amount = g.Sum(a => a.Amount)
+                    }).ToListAsync();
+            var summery = new DashboardSummery
+            {
+                Banks = banks,
+                Cash = cash
+            };
+            return summery;
+
+        }
+    }
+
+    public class DashboardSummery
+    {
+        public double Cash { get; set; }
+        public List<BankSummery> Banks { get; set; }
+
+        public double Total
+        {
+            get { return Cash + Banks.Sum(b => b.Amount); }
+        }
+    }
+    public class BankSummery
+    {
+        public string Name { get; set; }
+        public double Amount { get; set; }
     }
 }

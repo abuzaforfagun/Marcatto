@@ -17,27 +17,37 @@
 
       </ng-container>
 
-      <ng-container matColumnDef="amount">
-        <th mat-header-cell class="min" *matHeaderCellDef> Amount </th>
-        <td mat-cell class="min" *matCellDef="let transaction"> {{transaction.amount}} </td>
-        <td mat-footer-cell class="min" *matFooterCellDef> {{getTotalTransactions() | currency}} </td>
+      <ng-container matColumnDef="cashPayment">
+        <th mat-header-cell class="min" *matHeaderCellDef> Cash </th>
+        <td mat-cell class="min" *matCellDef="let transaction">
+          {{ checkCashPayment(transaction.amount, transaction.bankId) }} </td>
+        <td mat-footer-cell class="min" *matFooterCellDef> {{getTotalCashTransactions() | currency}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="bank">
+        <th mat-header-cell class="min" *matHeaderCellDef> Bank </th>
+        <td mat-cell class="min" *matCellDef="let transaction">
+          {{getBankAmount(transaction.amount, transaction.bankId)}} </td>
+        <td mat-footer-cell class="min" *matFooterCellDef> {{getBankTransactions() | currency}} </td>
       </ng-container>
 
       <ng-container matColumnDef="bankName">
-        <th mat-header-cell class="min" *matHeaderCellDef> Bank Name </th>
+        <th mat-header-cell class="min" *matHeaderCellDef> B. Name </th>
         <td mat-cell class="min" *matCellDef="let transaction"> {{transaction.bankName}} </td>
         <td mat-footer-cell class="min" *matFooterCellDef> {{getBankTransactions() | currency}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="cashPayment">
-        <th mat-header-cell class="min" *matHeaderCellDef> Cash Payment </th>
-        <td mat-cell class="min" *matCellDef="let transaction"> {{ checkCashPayment(transaction.cashPayment) }} </td>
-        <td mat-footer-cell class="min" *matFooterCellDef> {{getTotalCashTransactions() | currency}} </td>
-      </ng-container>
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      <tr>
+        <td></td>
+        <td>Sub Total</td>
+        <td>1231</td>
+      </tr>
     </table>
   </div>
 </div>

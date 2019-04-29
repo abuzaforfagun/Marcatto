@@ -12,8 +12,8 @@ import { Transaction } from 'src/app/models/transaction';
 export class IncomeTableComponent implements OnInit {
 
   @Input() tableType: string;
-  displayedColumns = ["date", "description", "amount", "bankName", "cashPayment"];
-  columnsToDisplay = ["Date", "Description", "Amount", "Bank Name", "Cash Payment"];
+  displayedColumns = ["date", "description", "cashPayment", "bank", "bankName"];
+  columnsToDisplay = ["Date", "Description", "Cash Payment", "Bank", "Bank Name",];
   transactions: Transaction[];
   constructor(private incomeService: IncomeService) { }
 
@@ -32,17 +32,24 @@ export class IncomeTableComponent implements OnInit {
   }
 
   getTotalCashTransactions(): number {
-    return this.transactions.filter(t => t.bankId == 0).map(t => t.amount).reduce((acc, value) => acc + value, 0);
+    return this.transactions.filter(t => t.bankId === 0).map(t => t.amount).reduce((acc, value) => acc + value, 0);
   }
 
-  checkCashPayment(isCashPayment: bollean): string {
-    if (isCashPayment) {
-      return "Yes";
+  checkCashPayment(amount: number, bankId: number): string {
+    if (bankId === 0) {
+      return amount.toString();
     }
-    return "";
+    return '';
   }
 
   getTotalTransactions(): number {
     return this.transactions.map(t => t.amount).reduce((acc, value) => acc + value, 0);
+  }
+
+  getBankAmount(amount: number, bankId: number): string {
+    if (bankId > 0) {
+      return amount.toString();
+    }
+    return '';
   }
 }

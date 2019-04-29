@@ -1,3 +1,4 @@
+import { DashboardService } from './../services/dashboard.service';
 import { Transaction } from './../models/transaction';
 import { ActionsControlService } from './../services/actions-control.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Router } from '@angular/router';
 import { IncomeService } from '../services/income.service';
 import { Dashboard } from '../models/dashboard';
+import { DashboardSummery } from '../models/dashboard-summery';
 
 
 @Component({
@@ -18,8 +20,10 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['date', 'description', 'efevo', 'banco'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   transitions: Transaction[];
+  summery: DashboardSummery;
 
   constructor(public actionControlService: ActionsControlService,
+    private dashboardService: DashboardService,
     private router: Router) { }
 
 
@@ -29,6 +33,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dashboardService.getSummery().subscribe(data => {
+      this.summery = data;
+    });
   }
 
   openAddform() {
