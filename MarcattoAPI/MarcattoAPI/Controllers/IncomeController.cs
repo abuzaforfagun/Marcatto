@@ -6,7 +6,6 @@ using AutoMapper;
 using Marcatto.Model;
 using Marcatto.Repository;
 using Marcatto.Resources;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarcattoAPI.Controllers

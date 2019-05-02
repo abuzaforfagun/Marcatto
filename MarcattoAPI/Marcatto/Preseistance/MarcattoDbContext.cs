@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Marcatto.Model;
+﻿using Marcatto.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Marcatto.Preseistance

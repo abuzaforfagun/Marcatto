@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Marcatto.Model;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 namespace Marcatto.Repository
 {
