@@ -2,11 +2,9 @@ import { DashboardService } from './../services/dashboard.service';
 import { Transaction } from './../models/transaction';
 import { ActionsControlService } from './../services/actions-control.service';
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
-import { IncomeService } from '../services/income.service';
-import { Dashboard } from '../models/dashboard';
 import { DashboardSummery } from '../models/dashboard-summery';
+import * as moment from 'moment';
 
 
 @Component({
@@ -21,6 +19,8 @@ export class DashboardComponent implements OnInit {
   columnsToDisplay: string[] = this.displayedColumns.slice();
   transitions: Transaction[];
   summery: DashboardSummery;
+  currentShortDate = moment(new Date()).format('MMMM YYYY');
+  currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
 
   constructor(public actionControlService: ActionsControlService,
     private dashboardService: DashboardService,
@@ -33,9 +33,14 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentShortDate = this.getCurrentDate(false);
     this.dashboardService.getSummery().subscribe(data => {
       this.summery = data;
     });
+
+    setInterval(() => {
+      this.currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
+    }, 60000);
   }
 
   openAddform() {
@@ -46,4 +51,15 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('banks');
   }
 
+  getCurrentDate(isFullDate: boolean): string {
+    const date = new Date();
+    const monthDictionary = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'Auguest', 'September', 'October', 'November', 'December'];
+    const monthNumber = date.getMonth();
+
+    if (!isFullDate) {
+      return monthDictionary[monthNumber] + ' ' + date.getFullYear();
+    }
+    return moment(new Date()).format('MMMM DD, YYYY hh:mm A');
+  }
 }

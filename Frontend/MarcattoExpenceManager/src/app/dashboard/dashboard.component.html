@@ -3,7 +3,7 @@
     <div class="date-time-container">
       <div class="col-md-12">
         <div class="datetime-holder">
-          <span>Marzo 15, 2019 12:33 PM</span>
+          <span>{{currentFullDate}}</span>
         </div>
       </div>
     </div>
@@ -48,9 +48,9 @@
   </table>
   <app-add-expense *ngIf="actionControlService.isAddFormOpen" class=""></app-add-expense>
   <div class="row month_specification">
-    <div class="col-md-12"><span>Marzo 2019</span></div>
+    <div class="col-md-12"><span>{{getCurrentDate(false)}}</span></div>
   </div>
-  <app-income-table tableType="income" class="income-data"></app-income-table>ks
+  <app-income-table tableType="income" class="income-data"></app-income-table>
   <!-- <app-expense-table tableType="expense" [transactions]="transactionsData" class="income-data"></app-expense-table> -->
 
 </div>
