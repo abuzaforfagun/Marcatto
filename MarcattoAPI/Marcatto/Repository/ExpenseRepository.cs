@@ -1,32 +1,33 @@
-﻿using System;
+﻿using Marcatto.Model;
+using Marcatto.Preseistance;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Marcatto.Model;
-using Marcatto.Preseistance;
-using Microsoft.EntityFrameworkCore;
 
 namespace Marcatto.Repository
 {
-    public class IncomeRepository : IIncomeRepository
+
+    public class ExpenseRepository : IExpenseRepository
     {
-        public Income LastAddedObject { get; set; }
+        public Expense LastAddedObject { get; set; }
         private readonly MarcattoDbContext context;
 
-        public IncomeRepository(MarcattoDbContext context)
+        public ExpenseRepository(MarcattoDbContext context)
         {
             this.context = context;
         }
 
-        public void Add(Income income)
+        public void Add(Expense expense)
         {
-            context.Income.Add(income);
-            this.LastAddedObject = income;
+            context.Expense.Add(expense);
+            this.LastAddedObject = expense;
         }
 
-        public async Task<IEnumerable<Income>> GetAsync()
+        public async Task<IEnumerable<Expense>> GetAsync()
         {
-            return await context.Income.Include(i=>i.BankAccount).ToListAsync();
+            return await context.Expense.Include(i => i.BankAccount).ToListAsync();
         }
 
         public async Task<IEnumerable<Income>> GetAsync(DateTime date)
@@ -37,8 +38,8 @@ namespace Marcatto.Repository
 
         public async Task<DashboardSummery> GetSummery()
         {
-            var cash = await context.Income.Where(i => i.PaymentOptionId == 1).SumAsync(i => i.Amount);
-            var banks = await context.Income.Include(i => i.BankAccount).Where(i => i.BankAccountId != null)
+            var cash = await context.Expense.Where(i => i.PaymentOptionId == 1).SumAsync(i => i.Amount);
+            var banks = await context.Expense.Include(i => i.BankAccount).Where(i => i.BankAccountId != null)
                 .GroupBy(i => i.BankAccountId).Select(
                     g => new BankSummery()
                     {
