@@ -30,9 +30,9 @@ namespace Marcatto.Repository
             return await context.Expense.Include(i => i.BankAccount).ToListAsync();
         }
 
-        public async Task<IEnumerable<Income>> GetAsync(DateTime date)
+        public async Task<IEnumerable<Expense>> GetAsync(DateTime date)
         {
-            return await context.Income.Include(i => i.BankAccount)
+            return await context.Expense.Include(i => i.BankAccount)
                 .Where(i => i.AddedDateTime.Year == date.Year && i.AddedDateTime.Month == date.Month).ToListAsync();
         }
 

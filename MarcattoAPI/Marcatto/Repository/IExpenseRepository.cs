@@ -10,7 +10,7 @@ namespace Marcatto.Repository
         Expense LastAddedObject { get; set; }
         void Add(Expense expense);
         Task<IEnumerable<Expense>> GetAsync();
-        Task<IEnumerable<Income>> GetAsync(DateTime date);
+        Task<IEnumerable<Expense>> GetAsync(DateTime date);
         Task<DashboardSummery> GetSummery();
     }
 }
