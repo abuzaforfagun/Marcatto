@@ -11,7 +11,7 @@ namespace Marcatto.Resources
         public TransactionResource()
         {
             AvailableColumns = new List<string>();
-            AvailableColumns.AddRange(new string[]{"date", "description", "amount"});
+            AvailableColumns.AddRange(new string[] { "date", "description", "amount" });
         }
     }
 }

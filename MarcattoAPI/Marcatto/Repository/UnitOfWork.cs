@@ -9,6 +9,7 @@ namespace Marcatto.Repository
         public IBankRepository BankRepository { get; set; }
         public IPaymentOptionsRepository PaymentOptionsRepository { get; set; }
         public IIncomeRepository IncomeRepository { get; set; }
+        public IExpenseRepository ExpenseRepository { get; set; }
 
         public UnitOfWork(MarcattoDbContext context)
         {
