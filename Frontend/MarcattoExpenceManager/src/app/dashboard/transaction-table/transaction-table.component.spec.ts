@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IncomeTableComponent } from './income-table.component';
+import { TransactionTableComponent } f./ transaction - table.componentonent';
 
 describe('IncomeTableComponent', () => {
-  let component: IncomeTableComponent;
-  let fixture: ComponentFixture<IncomeTableComponent>;
+  let component: TransactionTableComponent;
+  let fixture: ComponentFixture<TransactionTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IncomeTableComponent ]
+      declarations: [TransactionTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IncomeTableComponent);
+    fixture = TestBed.createComponent(TransactionTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

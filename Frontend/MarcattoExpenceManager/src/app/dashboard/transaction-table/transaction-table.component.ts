@@ -1,15 +1,14 @@
-import { transition } from '@angular/animations';
-import { Dashboard } from './../../models/dashboard';
+import { Dashboard } from '../../models/dashboard';
 import { Component, OnInit, Input } from '@angular/core';
 import { IncomeService } from 'src/app/services/income.service';
 import { Transaction } from 'src/app/models/transaction';
 
 @Component({
-  selector: 'app-income-table',
-  templateUrl: './income-table.component.html',
-  styleUrls: ['./income-table.component.scss']
+  selector: 'app-transaction-table',
+  templateUrl: './transaction-table.component.html',
+  styleUrls: ['./transaction-table.component.scss']
 })
-export class IncomeTableComponent implements OnInit {
+export class TransactionTableComponent implements OnInit {
 
   @Input() tableType: string;
   displayedColumns = ['date', 'description', 'cashPayment', 'bank', 'bankName'];
