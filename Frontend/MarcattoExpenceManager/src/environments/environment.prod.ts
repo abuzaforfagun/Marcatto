@@ -13,5 +13,16 @@ export const API = {
   },
   paymentOpiton: {
     getAll: `${rootAPI}/paymentoptions`
+  },
+  income: {
+    getAll: `${rootAPI}/income/`,
+    getByDate: `${rootAPI}/income/date/`
+  },
+  expense: {
+    getAll: `${rootAPI}/expense/`,
+    getByDate: `${rootAPI}/expense/date/`
+  },
+  dashboard: {
+    summery: `${rootAPI}/dashboard/`
   }
 };

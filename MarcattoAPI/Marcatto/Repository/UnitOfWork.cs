@@ -17,6 +17,7 @@ namespace Marcatto.Repository
             BankRepository = new BankRepository(context);
             PaymentOptionsRepository = new PaymentOptionsRepository(context);
             IncomeRepository = new IncomeRepository(context);
+            ExpenseRepository = new ExpenseRepository(context);
         }
 
         public async Task DoneAsync()

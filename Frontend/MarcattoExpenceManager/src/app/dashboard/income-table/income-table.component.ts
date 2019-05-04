@@ -12,18 +12,22 @@ import { Transaction } from 'src/app/models/transaction';
 export class IncomeTableComponent implements OnInit {
 
   @Input() tableType: string;
-  displayedColumns = ["date", "description", "cashPayment", "bank", "bankName"];
-  columnsToDisplay = ["Date", "Description", "Cash Payment", "Bank", "Bank Name",];
+  displayedColumns = ['date', 'description', 'cashPayment', 'bank', 'bankName'];
+  columnsToDisplay = ['Date', 'Description', 'Cash Payment', 'Bank', 'Bank Name',];
   transactions: Transaction[];
   constructor(private incomeService: IncomeService) { }
 
   ngOnInit() {
-    this.incomeService.getAll().subscribe((data: Dashboard) => {
-      console.log(data);
-      // this.columnsToDisplay = data.availableColumns;
-      // this.displayedColumns = data.availableColumns;
-      this.transactions = data.transactions;
-    });
+    if (this.tableType === 'income') {
+      this.incomeService.getAllIncomeTransactions().subscribe((data: Dashboard) => {
+        this.transactions = data.transactions;
+      });
+    } else {
+      this.incomeService.getAllExpenseTransactions().subscribe((data: Dashboard) => {
+        this.transactions = data.transactions;
+      });
+    }
+
   }
 
   getBankTransactions(): number {

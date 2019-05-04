@@ -13,7 +13,11 @@ export class IncomeService {
   income: Dashboard;
   constructor(private httpService: HttpService) { }
 
-  getAll(): Observable<any> {
+  getAllIncomeTransactions(): Observable<any> {
     return this.httpService.get(API.income.getAll, '');
+  }
+
+  getAllExpenseTransactions(): Observable<any> {
+    return this.httpService.get(API.expense.getAll, '');
   }
 }
