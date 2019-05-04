@@ -1,0 +1,14 @@
+<table *ngIf="summery" class="table">
+  <tr>
+    <th>Cash</th>
+    <th *ngFor="let bank of summery.banks">{{bank.name}}</th>
+  </tr>
+  <tr>
+    <td>{{summery.cash}}</td>
+    <td *ngFor="let bank of summery.banks">{{bank.amount}}</td>
+  </tr>
+  <tr>
+    <th>Sub Total</th>
+    <td>{{summery.total}}</td>
+  </tr>
+</table>

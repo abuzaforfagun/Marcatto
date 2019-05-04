@@ -20,6 +20,7 @@ import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { TransactionTableComponent } from './dashboard/transaction-table/transaction-table.component';
+import { SummeryComponent } from './dashboard/summery/summery.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { TransactionTableComponent } from './dashboard/transaction-table/transac
     DashboardComponent,
     BankAccountsComponent,
     DeleteDialogComponent,
-    TransactionTableComponent
+    TransactionTableComponent,
+    SummeryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,6 @@
-import { BankSummery } from './bank-summery';
+import { TransactionSummery } from './transaction-summery';
 
 export class DashboardSummery {
-    cash: number;
-    banks: BankSummery[];
-    total: number;
+    income: TransactionSummery;
+    expense: TransactionSummery;
 }

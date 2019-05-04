@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit {
   summery: DashboardSummery;
   currentShortDate = moment(new Date()).format('MMMM YYYY');
   currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
+  balanceCash: number;
+  balanceBank: number;
 
   constructor(public actionControlService: ActionsControlService,
     private dashboardService: DashboardService,
@@ -34,8 +36,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.currentShortDate = this.getCurrentDate(false);
-    this.dashboardService.getSummery().subscribe(data => {
+    this.dashboardService.getSummery().subscribe((data: DashboardSummery) => {
       this.summery = data;
+      this.balanceCash = data.income.cash - data.expense.cash;
+      const totalIncomeFromBank = data.income.banks.reduce((prev, curr) => prev + curr.amount, 0);
+      const totalExpenseFromBank = data.expense.banks.reduce((prev, curr) => prev + curr.amount, 0);
+      this.balanceBank = totalIncomeFromBank - totalExpenseFromBank;
     });
 
     setInterval(() => {

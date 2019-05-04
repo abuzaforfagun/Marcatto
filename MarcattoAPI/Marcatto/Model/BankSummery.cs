@@ -1,4 +1,4 @@
-﻿namespace Marcatto.Repository
+﻿namespace Marcatto.Model
 {
     public class BankSummery
     {

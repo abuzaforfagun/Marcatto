@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Marcatto.Repository;
+using Marcatto.Resources;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarcattoAPI.Controllers
@@ -20,7 +22,14 @@ namespace MarcattoAPI.Controllers
         public async Task<IActionResult> Index()
         {
             var income = await unitOfWork.IncomeRepository.GetSummery();
-            return Ok(income);
+            var expense = await unitOfWork.ExpenseRepository.GetSummery();
+            var result = new DashboardSummeryResource
+            {
+                Expense = expense,
+                Income = income
+            };
+
+            return Ok(result);
         }
     }
 }

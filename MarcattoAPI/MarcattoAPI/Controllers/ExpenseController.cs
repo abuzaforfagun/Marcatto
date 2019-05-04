@@ -24,9 +24,9 @@ namespace MarcattoAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ExpenseResource income)
+        public async Task<IActionResult> Add(ExpenseResource transaction)
         {
-            var entity = mapper.Map<Expense>(income);
+            var entity = mapper.Map<Expense>(transaction);
             entity.AddedDateTime = DateTime.Now;
             unitOfWork.ExpenseRepository.Add(entity);
             await unitOfWork.DoneAsync();

@@ -19,8 +19,8 @@
           </tr>
           <tr>
             <td>Saldo</td>
-            <td>$45</td>
-            <td>$120</td>
+            <td>$ {{balanceCash}}</td>
+            <td>$ {{balanceBank}}</td>
           </tr>
         </table>
       </div>
@@ -32,20 +32,9 @@
     </div>
   </div>
   <h2>Income Summery</h2>
-  <table *ngIf="summery" class="table">
-    <tr>
-      <th>Cash</th>
-      <th *ngFor="let bank of summery.banks">{{bank.name}}</th>
-    </tr>
-    <tr>
-      <td>{{summery.cash}}</td>
-      <td *ngFor="let bank of summery.banks">{{bank.amount}}</td>
-    </tr>
-    <tr>
-      <th>Sub Total</th>
-      <td>{{summery.total}}</td>
-    </tr>
-  </table>
+  <app-summery [summery]="summery.income"></app-summery>
+  <h2>Expense Summery</h2>
+  <app-summery [summery]="summery.expense"></app-summery>
   <app-add-expense *ngIf="actionControlService.isAddFormOpen" class=""></app-add-expense>
   <div class="row month_specification">
     <div class="col-md-12"><span>{{getCurrentDate(false)}}</span></div>
