@@ -56,12 +56,12 @@ namespace Marcatto.Repository
 
         }
 
-        public async Task<double> GetTotalCash()
+        public async Task<double> GetTotalCashAsync()
         {
             return await context.Income.Where(i => i.BankAccountId == null).SumAsync(i => i.Amount);
         }
 
-        public async Task<double> GetTotalBank()
+        public async Task<double> GetTotalBankAsync()
         {
             return await context.Income.Where(i => i.BankAccountId != null).SumAsync(i => i.Amount);
         }

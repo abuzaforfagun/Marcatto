@@ -37,12 +37,8 @@ namespace MarcattoAPI.Controllers
         public async Task<IActionResult> Get()
         {
             var expenses = await unitOfWork.ExpenseRepository.GetAsync();
-            var transactions = mapper.Map<IEnumerable<Expense>, List<Transaction>>(expenses);
-            var transactionResource = new TransactionResource();
-            var banks = expenses.Where(i => i.BankAccount != null).Select(i => i.BankAccount.Name).Distinct();
-            transactionResource.Transactions = transactions;
-            transactionResource.AvailableColumns.AddRange(banks);
-            return Ok(transactionResource);
+
+            return Ok(GenerateTransactionResource(expenses));
         }
 
         [HttpGet]
@@ -50,12 +46,18 @@ namespace MarcattoAPI.Controllers
         public async Task<IActionResult> GetByDate(DateTime date)
         {
             var expenses = await unitOfWork.ExpenseRepository.GetAsync(date);
-            var transactions = mapper.Map<IEnumerable<Expense>, List<Transaction>>(expenses);
+            
+            return Ok(GenerateTransactionResource(expenses));
+        }
+
+        private TransactionResource GenerateTransactionResource(IEnumerable<Expense> transactionList)
+        {
+            var transactions = mapper.Map<IEnumerable<Expense>, List<Transaction>>(transactionList);
             var transactionResource = new TransactionResource();
-            var banks = expenses.Where(i => i.BankAccount != null).Select(i => i.BankAccount.Name).Distinct();
+            var banks = transactionList.Where(i => i.BankAccount != null).Select(i => i.BankAccount.Name).Distinct();
             transactionResource.Transactions = transactions;
             transactionResource.AvailableColumns.AddRange(banks);
-            return Ok(transactionResource);
+            return transactionResource;
         }
     }
 }
