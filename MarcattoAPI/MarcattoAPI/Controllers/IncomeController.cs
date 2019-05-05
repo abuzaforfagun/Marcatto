@@ -51,7 +51,11 @@ namespace MarcattoAPI.Controllers
         {
             var incomeList = await unitOfWork.IncomeRepository.GetAsync(date);
             var transactions = mapper.Map<IEnumerable<Income>, List<Transaction>>(incomeList);
-            return Ok(transactions);
+            var transactionResource = new TransactionResource();
+            var banks = incomeList.Where(i => i.BankAccount != null).Select(i => i.BankAccount.Name).Distinct();
+            transactionResource.Transactions = transactions;
+            transactionResource.AvailableColumns.AddRange(banks);
+            return Ok(transactionResource);
         }
     }
 }

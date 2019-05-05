@@ -32,15 +32,13 @@
     </div>
   </div>
   <h2>Income Summery</h2>
-  <app-summery [summery]="summery.income"></app-summery>
+  <app-summery *ngIf="summery" [summery]="summery.income"></app-summery>
   <h2>Expense Summery</h2>
-  <app-summery [summery]="summery.expense"></app-summery>
+  <app-summery *ngIf="summery" [summery]="summery.expense"></app-summery>
   <app-add-expense *ngIf="actionControlService.isAddFormOpen" class=""></app-add-expense>
   <div class="row month_specification">
     <div class="col-md-12"><span>{{getCurrentDate(false)}}</span></div>
   </div>
   <app-transaction-table tableType="income" class="income-data"></app-transaction-table>
   <app-transaction-table tableType="expense" class="expense-data"></app-transaction-table>
-  <!-- <app-expense-table tableType="expense" [transactions]="transactionsData" class="income-data"></app-expense-table> -->
-
 </div>

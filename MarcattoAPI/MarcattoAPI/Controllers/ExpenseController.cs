@@ -51,7 +51,11 @@ namespace MarcattoAPI.Controllers
         {
             var expenses = await unitOfWork.ExpenseRepository.GetAsync(date);
             var transactions = mapper.Map<IEnumerable<Expense>, List<Transaction>>(expenses);
-            return Ok(transactions);
+            var transactionResource = new TransactionResource();
+            var banks = expenses.Where(i => i.BankAccount != null).Select(i => i.BankAccount.Name).Distinct();
+            transactionResource.Transactions = transactions;
+            transactionResource.AvailableColumns.AddRange(banks);
+            return Ok(transactionResource);
         }
     }
 }
