@@ -55,5 +55,15 @@ namespace Marcatto.Repository
             return summery;
 
         }
+
+        public async Task<double> GetTotalCash()
+        {
+            return await context.Income.Where(i => i.BankAccountId == null).SumAsync(i => i.Amount);
+        }
+
+        public async Task<double> GetTotalBank()
+        {
+            return await context.Income.Where(i => i.BankAccountId != null).SumAsync(i => i.Amount);
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace Marcatto.Resources
     {
         public DashboardSummery Income { get; set; }
         public DashboardSummery Expense { get; set; }
+        public double BankBalance { get; set; }
+        public double CashBalance { get; set; }
     }
 }

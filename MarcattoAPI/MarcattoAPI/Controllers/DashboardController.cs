@@ -23,10 +23,17 @@ namespace MarcattoAPI.Controllers
         {
             var income = await unitOfWork.IncomeRepository.GetCurrentMonthSummery();
             var expense = await unitOfWork.ExpenseRepository.GetCurrentMonthSummery();
+            var bankBalance = (await unitOfWork.IncomeRepository.GetTotalBank()) -
+                              (await unitOfWork.ExpenseRepository.GetTotalBank());
+
+            var cashBalance = (await unitOfWork.IncomeRepository.GetTotalCash()) -
+                              (await unitOfWork.ExpenseRepository.GetTotalCash());
             var result = new DashboardSummeryResource
             {
                 Expense = expense,
-                Income = income
+                Income = income,
+                BankBalance = bankBalance,
+                CashBalance = cashBalance
             };
 
             return Ok(result);

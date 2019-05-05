@@ -38,10 +38,8 @@ export class DashboardComponent implements OnInit {
     this.currentShortDate = this.getCurrentDate(false);
     this.dashboardService.getSummery().subscribe((data: DashboardSummery) => {
       this.summery = data;
-      this.balanceCash = data.income.cash - data.expense.cash;
-      const totalIncomeFromBank = data.income.banks.reduce((prev, curr) => prev + curr.amount, 0);
-      const totalExpenseFromBank = data.expense.banks.reduce((prev, curr) => prev + curr.amount, 0);
-      this.balanceBank = totalIncomeFromBank - totalExpenseFromBank;
+      this.balanceCash = data.cashBalance;
+      this.balanceBank = data.bankBalance;
     });
 
     setInterval(() => {
