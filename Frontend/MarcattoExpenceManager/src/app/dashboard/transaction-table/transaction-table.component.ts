@@ -18,11 +18,11 @@ export class TransactionTableComponent implements OnInit {
 
   ngOnInit() {
     if (this.tableType === 'income') {
-      this.incomeService.getAllIncomeTransactions().subscribe((data: Dashboard) => {
+      this.incomeService.getCurrentIncomeTransactions().subscribe((data: Dashboard) => {
         this.transactions = data.transactions;
       });
     } else {
-      this.incomeService.getAllExpenseTransactions().subscribe((data: Dashboard) => {
+      this.incomeService.getCurrentExpenseTransactions().subscribe((data: Dashboard) => {
         this.transactions = data.transactions;
       });
     }
