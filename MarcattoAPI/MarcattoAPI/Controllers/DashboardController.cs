@@ -21,8 +21,8 @@ namespace MarcattoAPI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var income = await unitOfWork.IncomeRepository.GetSummery();
-            var expense = await unitOfWork.ExpenseRepository.GetSummery();
+            var income = await unitOfWork.IncomeRepository.GetCurrentMonthSummery();
+            var expense = await unitOfWork.ExpenseRepository.GetCurrentMonthSummery();
             var result = new DashboardSummeryResource
             {
                 Expense = expense,

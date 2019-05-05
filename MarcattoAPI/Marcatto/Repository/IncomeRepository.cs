@@ -35,10 +35,12 @@ namespace Marcatto.Repository
                 .Where(i => i.AddedDateTime.Year == date.Year && i.AddedDateTime.Month == date.Month).ToListAsync();
         }
 
-        public async Task<DashboardSummery> GetSummery()
+        public async Task<DashboardSummery> GetCurrentMonthSummery()
         {
-            var cash = await context.Income.Where(i => i.PaymentOptionId == 1).SumAsync(i => i.Amount);
-            var banks = await context.Income.Include(i => i.BankAccount).Where(i => i.BankAccountId != null)
+            var currentDate = DateTime.Now;
+            var query = context.Income.Where(i => i.Date.Month == currentDate.Month && i.Date.Year == currentDate.Year);
+            var cash = await query.Where(i => i.PaymentOptionId == 1).SumAsync(i => i.Amount);
+            var banks = await query.Include(i => i.BankAccount).Where(i => i.BankAccountId != null)
                 .GroupBy(i => i.BankAccountId).Select(
                     g => new BankSummery()
                     {

@@ -11,6 +11,6 @@ namespace Marcatto.Repository
         void Add(Expense expense);
         Task<IEnumerable<Expense>> GetAsync();
         Task<IEnumerable<Expense>> GetAsync(DateTime date);
-        Task<DashboardSummery> GetSummery();
+        Task<DashboardSummery> GetCurrentMonthSummery();
     }
 }
