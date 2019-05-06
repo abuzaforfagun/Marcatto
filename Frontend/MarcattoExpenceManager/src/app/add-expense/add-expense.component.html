@@ -15,13 +15,13 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="textarea" class="form-control"></textarea>
+        <textarea [(ngModel)]="transaction.description" name="description" class="form-control"></textarea>
       </div>
     </div>
     <div class="col-md-2">
       <div class="form-group">
         <label for="amount">Amount</label>
-        <input name="amount" type="number" class="form-control">
+        <input [(ngModel)]="transaction.amount" name="amount" type="number" class="form-control">
       </div>
     </div>
     <div class="col-md-2">
@@ -29,7 +29,8 @@
         <label>Forma de pago</label><br />
         <mat-form-field class="full-width">
           <mat-label>Forma de pago</mat-label>
-          <mat-select disableOptionCentering (selectionChange)="changePaymentOptions($event.value)">
+          <mat-select [(ngModel)]="transaction.paymentOptionId" disableOptionCentering
+            (selectionChange)="changePaymentOptions($event.value)">
             <mat-option *ngFor="let paymentOpt of paymentOptionService.paymentOptions" [value]="paymentOpt.id">
               {{paymentOpt.name}}
             </mat-option>
@@ -43,7 +44,7 @@
         <label>Bank Account</label><br />
         <mat-form-field class="full-width">
           <mat-label>Select Bank Account</mat-label>
-          <mat-select disableOptionCentering>
+          <mat-select [(ngModel)]="transaction.bankAccountId" disableOptionCentering>
             <mat-option *ngFor="let bank of bankService.banks" [value]="bank.id">
               {{bank.name}}
             </mat-option>

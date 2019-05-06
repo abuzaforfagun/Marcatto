@@ -1,7 +1,7 @@
 import { Dashboard } from '../../models/dashboard';
 import { Component, OnInit, Input } from '@angular/core';
-import { IncomeService } from 'src/app/services/income.service';
 import { Transaction } from 'src/app/models/transaction';
+import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
   selector: 'app-transaction-table',
@@ -14,7 +14,7 @@ export class TransactionTableComponent implements OnInit {
   displayedColumns = ['date', 'description', 'cashPayment', 'bank', 'bankName'];
   columnsToDisplay = ['Date', 'Description', 'Cash Payment', 'Bank', 'Bank Name',];
   transactions: Transaction[];
-  constructor(private incomeService: IncomeService) { }
+  constructor(private incomeService: TransactionService) { }
 
   ngOnInit() {
     if (this.tableType === 'income') {

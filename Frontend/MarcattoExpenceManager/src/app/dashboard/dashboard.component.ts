@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
   balanceCash: number;
   balanceBank: number;
+  isIncomeTransaction: boolean;
 
   constructor(public actionControlService: ActionsControlService,
     private dashboardService: DashboardService,
@@ -47,7 +48,8 @@ export class DashboardComponent implements OnInit {
     }, 60000);
   }
 
-  openAddform() {
+  openAddform(isIncomeTransaction: boolean) {
+    this.isIncomeTransaction = isIncomeTransaction;
     this.actionControlService.isAddFormOpen = true;
   }
 

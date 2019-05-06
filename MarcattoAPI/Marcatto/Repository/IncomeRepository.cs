@@ -38,8 +38,9 @@ namespace Marcatto.Repository
         public async Task<DashboardSummery> GetCurrentMonthSummery()
         {
             var currentDate = DateTime.Now;
+            var c = context.Income.ToList();
             var query = context.Income.Where(i => i.Date.Month == currentDate.Month && i.Date.Year == currentDate.Year);
-            var cash = await query.Where(i => i.PaymentOptionId == 1).SumAsync(i => i.Amount);
+            var cash = await query.Where(i => i.BankAccountId == null).SumAsync(i => i.Amount);
             var banks = await query.Include(i => i.BankAccount).Where(i => i.BankAccountId != null)
                 .GroupBy(i => i.BankAccountId).Select(
                     g => new BankSummery()

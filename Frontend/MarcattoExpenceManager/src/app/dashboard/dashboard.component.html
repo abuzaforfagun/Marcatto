@@ -25,17 +25,19 @@
         </table>
       </div>
       <div class="col-md-6 buttons">
-        <button (click)="openAddform()"><img src="assets/income.png"></button>
-        <button (click)="openAddform()"><img src="assets/expense.png"></button>
+        <button (click)="openAddform(true)"><img src="assets/income.png"></button>
+        <button (click)="openAddform(false)"><img src="assets/expense.png"></button>
         <button (click)="manageBanks()"><img src="assets/bank.png"></button>
       </div>
     </div>
   </div>
+  <app-add-expense *ngIf="actionControlService.isAddFormOpen" [isIncomeTransaction]="isIncomeTransaction">
+  </app-add-expense>
   <h2>Income Summery</h2>
   <app-summery *ngIf="summery" [summery]="summery.income"></app-summery>
   <h2>Expense Summery</h2>
   <app-summery *ngIf="summery" [summery]="summery.expense"></app-summery>
-  <app-add-expense *ngIf="actionControlService.isAddFormOpen" class=""></app-add-expense>
+
   <div class="row month_specification">
     <div class="col-md-12"><span>{{getCurrentDate(false)}}</span></div>
   </div>
