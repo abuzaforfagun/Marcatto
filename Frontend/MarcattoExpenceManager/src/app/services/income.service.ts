@@ -19,7 +19,7 @@ export class IncomeService {
   }
 
   getCurrentIncomeTransactions(): Observable<any> {
-    const date = moment(new Date()).format('DD-MM-YYYY');
+    const date = moment(new Date()).format('MM-DD-YYYY');
     return this.httpService.get(API.income.getByDate + date, '');
   }
 
@@ -28,7 +28,7 @@ export class IncomeService {
   }
 
   getCurrentExpenseTransactions(): Observable<any> {
-    const date = moment(new Date()).format('DD-MM-YYYY');
+    const date = moment(new Date()).format('MM-DD-YYYY');
     return this.httpService.get(API.expense.getByDate + date, '');
   }
 }
