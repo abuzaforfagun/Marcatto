@@ -20,6 +20,7 @@ export class AddExpenseComponent implements OnInit {
   date = new FormControl(new Date());
   isBankAccountSelected = false;
   transaction: AddTransaction;
+  errors = '';
 
   @Input() transactionType: string;
   @Input() clearForm: Subject<any>;
@@ -41,10 +42,11 @@ export class AddExpenseComponent implements OnInit {
 
   addExpense() {
     this.transaction.date = moment(new Date(this.date.value)).format('MM-DD-YYYY');
-
-    this.transactionService.addTransaction(this.transactionType, this.transaction).subscribe(data => {
-      this.transaction = new AddTransaction();
-    });
+    if (this.checkInputs()) {
+      this.transactionService.addTransaction(this.transactionType, this.transaction).subscribe(data => {
+        this.transaction = new AddTransaction();
+      });
+    }
   }
 
   changePaymentOptions(selectedPaymentOption) {
@@ -53,5 +55,26 @@ export class AddExpenseComponent implements OnInit {
     } else {
       this.isBankAccountSelected = false;
     }
+  }
+
+  checkInputs(): boolean {
+    let isInputValid = true;
+    this.errors = '';
+    if (!this.transaction.description) {
+      this.errors += 'Please enter description.<br/>';
+      isInputValid = false;
+    }
+    if (!this.transaction.amount) {
+      this.errors += 'Please enter amount.<br/>';
+      isInputValid = false;
+    }
+    if (!this.transaction.paymentOptionId) {
+      this.errors += 'Please select payment option.<br/>';
+      isInputValid = false;
+    } else if (this.transaction.paymentOptionId !== 1 && !this.transaction.bankAccountId) {
+      this.errors += 'Please select bank account number;';
+      isInputValid = false;
+    }
+    return isInputValid;
   }
 }

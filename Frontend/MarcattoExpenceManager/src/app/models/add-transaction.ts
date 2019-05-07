@@ -5,7 +5,7 @@ export class AddTransaction {
     description: string;
     bankAccountId: number;
     paymentOptionId: number;
-
+    amount: number;
     constructor() {
     }
 }
