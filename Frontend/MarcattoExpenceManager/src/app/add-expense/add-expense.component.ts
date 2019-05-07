@@ -1,12 +1,12 @@
 import { AddTransaction } from './../models/add-transaction';
 import { PaymentOptionsService } from './../services/payment-options.service';
 import { BankService } from './../services/bank.service';
-import { ActionsControlService } from './../services/actions-control.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CASH_PAYMENT_ID } from '../configuration/constants';
 import * as moment from 'moment';
 import { TransactionService } from '../services/transaction.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-expense',
@@ -20,8 +20,10 @@ export class AddExpenseComponent implements OnInit {
   date = new FormControl(new Date());
   isBankAccountSelected = false;
   transaction: AddTransaction;
-  @Input() isIncomeTransaction: boolean;
-  constructor(private actionControlService: ActionsControlService,
+
+  @Input() transactionType: string;
+  @Input() clearForm: Subject<any>;
+  constructor(
     public bankService: BankService,
     public paymentOptionService: PaymentOptionsService,
     private transactionService: TransactionService) { }
@@ -31,13 +33,17 @@ export class AddExpenseComponent implements OnInit {
     this.bankService.getAll();
 
     this.transaction = new AddTransaction();
+
+    this.clearForm.subscribe(() => {
+      this.transaction = new AddTransaction();
+    });
   }
 
   addExpense() {
     this.transaction.date = moment(new Date(this.date.value)).format('MM-DD-YYYY');
 
-    this.transactionService.addTransaction(this.isIncomeTransaction, this.transaction).subscribe(data => {
-      console.log(data);
+    this.transactionService.addTransaction(this.transactionType, this.transaction).subscribe(data => {
+      this.transaction = new AddTransaction();
     });
   }
 

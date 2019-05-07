@@ -33,12 +33,8 @@ export class TransactionService {
     return this.httpService.get(API.expense.getByDate + date, '');
   }
 
-  addTransaction(isIncome: boolean, data: AddTransaction): Observable<any> {
-    let url = API.expense.add;
-    if (isIncome) {
-      url = API.income.add;
-    }
-
+  addTransaction(transactionType: string, data: AddTransaction): Observable<any> {
+    const url = transactionType === 'Income' ? API.income.add : API.expense.add;
     return this.httpService.post(url, data);
   }
 }

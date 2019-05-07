@@ -1,10 +1,12 @@
+import { AddExpenseComponent } from './../add-expense/add-expense.component';
 import { DashboardService } from './../services/dashboard.service';
 import { Transaction } from './../models/transaction';
 import { ActionsControlService } from './../services/actions-control.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardSummery } from '../models/dashboard-summery';
 import * as moment from 'moment';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -23,19 +25,17 @@ export class DashboardComponent implements OnInit {
   currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
   balanceCash: number;
   balanceBank: number;
-  isIncomeTransaction: boolean;
+  transactionType: string;
+  clearAddTransactionForm: Subject<any>;
+
+  @ViewChild(AddExpenseComponent) addExpense: AddExpenseComponent;
 
   constructor(public actionControlService: ActionsControlService,
     private dashboardService: DashboardService,
     private router: Router) { }
 
-
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    // return this.transactionsData.map(t => t.efevo).reduce((acc, value) => acc + value, 0);
-  }
-
   ngOnInit() {
+    this.clearAddTransactionForm = new Subject();
     this.currentShortDate = this.getCurrentDate(false);
     this.dashboardService.getSummery().subscribe((data: DashboardSummery) => {
       this.summery = data;
@@ -49,7 +49,8 @@ export class DashboardComponent implements OnInit {
   }
 
   openAddform(isIncomeTransaction: boolean) {
-    this.isIncomeTransaction = isIncomeTransaction;
+    this.clearAddTransactionForm.next(true);
+    this.transactionType = isIncomeTransaction ? 'Income' : 'Expense';
     this.actionControlService.isAddFormOpen = true;
   }
 
