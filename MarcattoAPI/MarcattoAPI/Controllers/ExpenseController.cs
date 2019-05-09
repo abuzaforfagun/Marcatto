@@ -30,7 +30,8 @@ namespace MarcattoAPI.Controllers
             entity.AddedDateTime = DateTime.Now;
             unitOfWork.ExpenseRepository.Add(entity);
             await unitOfWork.DoneAsync();
-            var _lastAddedTransaction = mapper.Map<Expense, ExpenseResource>(unitOfWork.ExpenseRepository.LastAddedObject);
+
+            var _lastAddedTransaction = mapper.Map<Expense, Transaction>(unitOfWork.ExpenseRepository.LastAddedObject);
             return Ok(_lastAddedTransaction);
         }
 
