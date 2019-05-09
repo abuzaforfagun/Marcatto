@@ -39,11 +39,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.clearAddTransactionForm = new Subject();
-    this.dashboardService.getSummery().subscribe((data: DashboardSummery) => {
-      this.summery = data;
-      this.balanceCash = data.cashBalance;
-      this.balanceBank = data.bankBalance;
-    });
+    this.GetDashBoardSummery();
 
     setInterval(() => {
       this.currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
@@ -54,6 +50,14 @@ export class DashboardComponent implements OnInit {
     });
     this.transactionService.getCurrentExpenseTransactions().subscribe((data: Dashboard) => {
       this.expenses = data.transactions;
+    });
+  }
+
+  private GetDashBoardSummery() {
+    this.dashboardService.getSummery().subscribe((data: DashboardSummery) => {
+      this.summery = data;
+      this.balanceCash = data.cashBalance;
+      this.balanceBank = data.bankBalance;
     });
   }
 
@@ -85,6 +89,7 @@ export class DashboardComponent implements OnInit {
     } else if (this.transactionType === 'Expense') {
       this.expenseTable.addDataToTable(transaction);
     }
+    this.GetDashBoardSummery();
   }
 
 }
