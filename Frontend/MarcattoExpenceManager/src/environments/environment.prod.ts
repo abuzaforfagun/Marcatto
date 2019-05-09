@@ -15,10 +15,12 @@ export const API = {
     getAll: `${rootAPI}/paymentoptions`
   },
   income: {
+    add: `${rootAPI}/income`,
     getAll: `${rootAPI}/income/`,
     getByDate: `${rootAPI}/income/date/`
   },
   expense: {
+    add: `${rootAPI}/expense/`,
     getAll: `${rootAPI}/expense/`,
     getByDate: `${rootAPI}/expense/date/`
   },
