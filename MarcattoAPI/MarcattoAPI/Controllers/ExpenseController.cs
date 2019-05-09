@@ -31,7 +31,14 @@ namespace MarcattoAPI.Controllers
             unitOfWork.ExpenseRepository.Add(entity);
             await unitOfWork.DoneAsync();
 
-            var _lastAddedTransaction = mapper.Map<Expense, Transaction>(unitOfWork.ExpenseRepository.LastAddedObject);
+            var lastAddedTransaction = unitOfWork.ExpenseRepository.LastAddedObject;
+
+            int lastlyAddedBankId = lastAddedTransaction.BankAccountId ?? 0;
+            lastAddedTransaction.BankAccount = lastlyAddedBankId != 0
+                ? await unitOfWork.BankRepository.GetAsync(lastlyAddedBankId)
+                : null;
+            var _lastAddedTransaction = mapper.Map<Expense, Transaction>(lastAddedTransaction);
+
             return Ok(_lastAddedTransaction);
         }
 

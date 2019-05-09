@@ -30,8 +30,13 @@ namespace MarcattoAPI.Controllers
             incomeEntity.AddedDateTime = DateTime.Now;
             unitOfWork.IncomeRepository.Add(incomeEntity);
             await unitOfWork.DoneAsync();
+            var lastAddedTransaction = unitOfWork.IncomeRepository.LastAddedObject;
 
-            var _lastAddedTransaction = mapper.Map<Income, Transaction>(unitOfWork.IncomeRepository.LastAddedObject);
+            int lastlyAddedBankId = lastAddedTransaction.BankAccountId ?? 0;
+            lastAddedTransaction.BankAccount = lastlyAddedBankId != 0
+                ? await unitOfWork.BankRepository.GetAsync(lastlyAddedBankId)
+                : null;
+            var _lastAddedTransaction = mapper.Map<Income, Transaction>(lastAddedTransaction);
             return Ok(_lastAddedTransaction);
         }
 
