@@ -1,6 +1,6 @@
 <div class="row data_container" [class.income]="tableType === 'income'" [class.expense]="tableType === 'expense'">
   <div class="col-md-12">
-    <table mat-table *ngIf="transactions" [dataSource]="transactions" class="mat-elevation-z8">
+    <table mat-table *ngIf="tableData" [dataSource]="tableData" class="mat-elevation-z8">
       <ng-container matColumnDef="date">
         <th mat-header-cell class="min" *matHeaderCellDef> Fecha </th>
         <td mat-cell class="min" *matCellDef="let transaction"> {{transaction.date}} </td>

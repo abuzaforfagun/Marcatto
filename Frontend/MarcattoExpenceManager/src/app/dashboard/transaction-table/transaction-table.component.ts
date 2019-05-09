@@ -1,7 +1,5 @@
-import { Dashboard } from '../../models/dashboard';
 import { Component, OnInit, Input } from '@angular/core';
 import { Transaction } from 'src/app/models/transaction';
-import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
   selector: 'app-transaction-table',
@@ -11,31 +9,21 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class TransactionTableComponent implements OnInit {
 
   @Input() tableType: string;
+  @Input() tableData: Transaction[];
   displayedColumns = ['date', 'description', 'cashPayment', 'bank', 'bankName'];
   columnsToDisplay = ['Date', 'Description', 'Cash Payment', 'Bank', 'Bank Name',];
-  transactions: Transaction[];
-  constructor(private incomeService: TransactionService) { }
+  constructor() { }
 
   ngOnInit() {
-    if (this.tableType === 'income') {
-      this.incomeService.getCurrentIncomeTransactions().subscribe((data: Dashboard) => {
-        this.transactions = data.transactions;
-      });
-    } else {
-      this.incomeService.getCurrentExpenseTransactions().subscribe((data: Dashboard) => {
-        this.transactions = data.transactions;
-      });
-    }
-
   }
 
   getBankTransactions(): number {
-    return this.transactions.filter(t => t.bankId > 0).map(t => t.amount).reduce((acc, value) => acc + value, 0);
+    return this.tableData.filter(t => t.bankId > 0).map(t => t.amount).reduce((acc, value) => acc + value, 0);
 
   }
 
   getTotalCashTransactions(): number {
-    return this.transactions.filter(t => t.bankId === 0).map(t => t.amount).reduce((acc, value) => acc + value, 0);
+    return this.tableData.filter(t => t.bankId === 0).map(t => t.amount).reduce((acc, value) => acc + value, 0);
   }
 
   checkCashPayment(amount: number, bankId: number): string {
@@ -46,7 +34,7 @@ export class TransactionTableComponent implements OnInit {
   }
 
   getTotalTransactions(): number {
-    return this.transactions.map(t => t.amount).reduce((acc, value) => acc + value, 0);
+    return this.tableData.map(t => t.amount).reduce((acc, value) => acc + value, 0);
   }
 
   getBankAmount(amount: number, bankId: number): string {
@@ -54,5 +42,15 @@ export class TransactionTableComponent implements OnInit {
       return amount.toString();
     }
     return '';
+  }
+
+  // TODO: improve the method
+  addDataToTable(data: Transaction) {
+    const tableData = this.tableData;
+    this.tableData = [];
+    tableData.push(data);
+    tableData.forEach(val => {
+      this.tableData.push(val);
+    });
   }
 }

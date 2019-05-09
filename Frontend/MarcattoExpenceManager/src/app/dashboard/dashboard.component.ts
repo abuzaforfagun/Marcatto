@@ -1,12 +1,14 @@
-import { AddExpenseComponent } from './../add-expense/add-expense.component';
+import { TransactionTableComponent } from './transaction-table/transaction-table.component';
 import { DashboardService } from './../services/dashboard.service';
 import { Transaction } from './../models/transaction';
 import { ActionsControlService } from './../services/actions-control.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardSummery } from '../models/dashboard-summery';
 import * as moment from 'moment';
 import { Subject } from 'rxjs';
+import { TransactionService } from '../services/transaction.service';
+import { Dashboard } from '../models/dashboard';
 
 
 @Component({
@@ -17,26 +19,26 @@ import { Subject } from 'rxjs';
 export class DashboardComponent implements OnInit {
   hideShowAnimator = true;
   isAddOpen = false;
-  displayedColumns: string[] = ['date', 'description', 'efevo', 'banco'];
-  columnsToDisplay: string[] = this.displayedColumns.slice();
-  transitions: Transaction[];
   summery: DashboardSummery;
-  currentShortDate = moment(new Date()).format('MMMM YYYY');
   currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
   balanceCash: number;
   balanceBank: number;
   transactionType: string;
   clearAddTransactionForm: Subject<any>;
 
-  @ViewChild(AddExpenseComponent) addExpense: AddExpenseComponent;
+  incomes: Transaction[];
+  expenses: Transaction[];
+
+  @ViewChild('income') incomeTable: TransactionTableComponent;
+  @ViewChild('expense') expenseTable: TransactionTableComponent;
 
   constructor(public actionControlService: ActionsControlService,
+    private transactionService: TransactionService,
     private dashboardService: DashboardService,
     private router: Router) { }
 
   ngOnInit() {
     this.clearAddTransactionForm = new Subject();
-    this.currentShortDate = this.getCurrentDate(false);
     this.dashboardService.getSummery().subscribe((data: DashboardSummery) => {
       this.summery = data;
       this.balanceCash = data.cashBalance;
@@ -46,6 +48,13 @@ export class DashboardComponent implements OnInit {
     setInterval(() => {
       this.currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
     }, 60000);
+
+    this.transactionService.getCurrentIncomeTransactions().subscribe((data: Dashboard) => {
+      this.incomes = data.transactions;
+    });
+    this.transactionService.getCurrentExpenseTransactions().subscribe((data: Dashboard) => {
+      this.expenses = data.transactions;
+    });
   }
 
   openAddform(isIncomeTransaction: boolean) {
@@ -69,4 +78,13 @@ export class DashboardComponent implements OnInit {
     }
     return moment(new Date()).format('MMMM DD, YYYY hh:mm A');
   }
+
+  addDataToTable(transaction: Transaction): void {
+    if (this.transactionType === 'Income') {
+      this.incomeTable.addDataToTable(transaction);
+    } else if (this.transactionType === 'Expense') {
+      this.expenseTable.addDataToTable(transaction);
+    }
+  }
+
 }

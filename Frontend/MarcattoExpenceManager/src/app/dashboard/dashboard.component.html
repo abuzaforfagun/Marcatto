@@ -32,7 +32,7 @@
     </div>
   </div>
   <app-add-expense *ngIf="actionControlService.isAddFormOpen" [transactionType]="transactionType"
-    [clearForm]="clearAddTransactionForm">
+    [clearForm]="clearAddTransactionForm" (addDataToTable)="addDataToTable($event)">
   </app-add-expense>
   <h2>Income Summery</h2>
   <app-summery *ngIf="summery" [summery]="summery.income"></app-summery>
@@ -42,6 +42,8 @@
   <div class="row month_specification">
     <div class="col-md-12"><span>{{getCurrentDate(false)}}</span></div>
   </div>
-  <app-transaction-table tableType="income" class="income-data"></app-transaction-table>
-  <app-transaction-table tableType="expense" class="expense-data"></app-transaction-table>
+  <app-transaction-table #income tableType="income" [tableData]="incomes" (addNewData)="addNewIncome($event)"
+    class="income-data"></app-transaction-table>
+  <app-transaction-table #expense tableType="expense" [tableData]="expenses" (addNewData)="addNewExpense($event)"
+    class="expense-data"></app-transaction-table>
 </div>

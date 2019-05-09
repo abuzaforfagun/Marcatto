@@ -1,12 +1,13 @@
 import { AddTransaction } from './../models/add-transaction';
 import { PaymentOptionsService } from './../services/payment-options.service';
 import { BankService } from './../services/bank.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CASH_PAYMENT_ID } from '../configuration/constants';
 import * as moment from 'moment';
 import { TransactionService } from '../services/transaction.service';
 import { Subject } from 'rxjs';
+import { Transaction } from '../models/transaction';
 
 @Component({
   selector: 'app-add-expense',
@@ -24,6 +25,7 @@ export class AddExpenseComponent implements OnInit {
 
   @Input() transactionType: string;
   @Input() clearForm: Subject<any>;
+  @Output() addDataToTable = new EventEmitter<Transaction>();
   constructor(
     public bankService: BankService,
     public paymentOptionService: PaymentOptionsService,
@@ -45,6 +47,7 @@ export class AddExpenseComponent implements OnInit {
     if (this.checkInputs()) {
       this.transactionService.addTransaction(this.transactionType, this.transaction).subscribe(data => {
         this.transaction = new AddTransaction();
+        this.addDataToTable.next(data);
       });
     }
   }
