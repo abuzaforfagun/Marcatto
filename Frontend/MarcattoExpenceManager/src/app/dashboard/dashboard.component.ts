@@ -18,7 +18,6 @@ import { Dashboard } from '../models/dashboard';
 })
 export class DashboardComponent implements OnInit {
   hideShowAnimator = true;
-  isAddOpen = false;
   summery: DashboardSummery;
   currentFullDate = moment(new Date()).format('MMMM DD, YYYY hh:mm A');
   balanceCash: number;
@@ -90,6 +89,11 @@ export class DashboardComponent implements OnInit {
       this.expenseTable.addDataToTable(transaction);
     }
     this.GetDashBoardSummery();
+  }
+
+  closeForm(): void {
+    this.clearAddTransactionForm.next(true);
+    this.actionControlService.isAddFormOpen = false;
   }
 
 }
