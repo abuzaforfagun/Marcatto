@@ -11,7 +11,7 @@ export class TransactionTableComponent implements OnInit {
   @Input() tableType: string;
   @Input() tableData: Transaction[];
   displayedColumns = ['date', 'description', 'cashPayment', 'bank', 'bankName'];
-  columnsToDisplay = ['Date', 'Description', 'Cash Payment', 'Bank', 'Bank Name',];
+  columnsToDisplay = ['Date', 'Description', 'Cash Payment', 'Bank', 'Bank Name'];
   constructor() { }
 
   ngOnInit() {
