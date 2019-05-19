@@ -32,7 +32,7 @@
     </div>
   </div>
   <app-add-expense *ngIf="actionControlService.isAddFormOpen" [transactionType]="transactionType"
-    [clearForm]="clearAddTransactionForm" (addDataToTable)="addDataToTable($event)">
+    [clearForm]="clearAddTransactionForm" (addDataToTable)="addDataToTable($event)" (closeForm)="closeForm()">
   </app-add-expense>
   <h2>Income Summery</h2>
   <app-summery *ngIf="summery" [summery]="summery.income"></app-summery>

@@ -26,6 +26,7 @@ export class AddExpenseComponent implements OnInit {
   @Input() transactionType: string;
   @Input() clearForm: Subject<any>;
   @Output() addDataToTable = new EventEmitter<Transaction>();
+  @Output() closeForm = new EventEmitter<boolean>();
   constructor(
     public bankService: BankService,
     public paymentOptionService: PaymentOptionsService,
@@ -79,5 +80,9 @@ export class AddExpenseComponent implements OnInit {
       isInputValid = false;
     }
     return isInputValid;
+  }
+
+  clickCloseForm(): void {
+    this.closeForm.next(true);
   }
 }
