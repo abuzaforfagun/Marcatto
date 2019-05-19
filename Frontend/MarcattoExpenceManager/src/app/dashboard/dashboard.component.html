@@ -42,8 +42,7 @@
   <div class="row month_specification">
     <div class="col-md-12"><span>{{getCurrentDate(false)}}</span></div>
   </div>
-  <app-transaction-table #income tableType="income" [tableData]="incomes" (addNewData)="addNewIncome($event)"
-    class="income-data"></app-transaction-table>
-  <app-transaction-table #expense tableType="expense" [tableData]="expenses" (addNewData)="addNewExpense($event)"
-    class="expense-data"></app-transaction-table>
+  <app-transaction-table #income tableType="income" [tableData]="incomes" class="income-data"></app-transaction-table>
+  <app-transaction-table #expense tableType="expense" [tableData]="expenses" class="expense-data">
+  </app-transaction-table>
 </div>
